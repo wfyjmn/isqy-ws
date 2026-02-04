@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>唐诗欣赏 - 《静夜思》</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: #f8f3e6;
+            color: #333;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(#d9c7a5 2px, transparent 2px),
+                radial-gradient(#d9c7a5 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: rgba(255, 253, 245, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border: 1px solid #d9c7a5;
+            position: relative;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23d9c7a5" stroke-width="0.2" opacity="0.3"/></svg>');
+            pointer-events: none;
+        }
+        
+        header {
+            background: linear-gradient(to right, #8b1a1a, #a52a2a);
+            color: #f8f3e6;
+            padding: 25px 30px;
+            text-align: center;
+            border-bottom: 5px solid #d4af37;
+        }
+        
+        h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.8rem;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        
+        .content {
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .poem-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .poem-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.2rem;
+            color: #8b1a1a;
+            text-align: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #d4af37;
+        }
+        
+        .author {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #5d4037;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .poem-text {
+            font-size: 1.8rem;
+            line-height: 2.2;
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #8b1a1a;
+            border-right: 4px solid #8b1a1a;
+        }
+        
+        .verse {
+            margin: 20px 0;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .verse:hover {
+            background-color: rgba(139, 26, 26, 0.05);
+            transform: translateX(5px);
+            cursor: pointer;
+        }
+        
+        .annotation-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f9f5eb;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #d9c7a5;
+        }
+        
+        .annotation-title {
+            font-size: 1.5rem;
+            color: #5d4037;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        .annotation-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .annotation-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .annotation-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .annotation-item h3 {
+            color: #8b1a1a;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .annotation-item p {
+            color: #5d4037;
+        }
+        
+        .divider {
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            margin: 30px auto;
+        }
+        
+        .about-poet {
+            background-color: #f9f5eb;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #d9c7a5;
+        }
+        
+        .about-poet h2 {
+            color: #5d4037;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .about-poet p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #5d4037;
+            color: #f8f3e6;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+        
+        .seal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background-color: #8b1a1a;
+            border-radius: 5px;
+            transform: rotate(15deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f8f3e6;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .poem-text {
+                font-size: 1.5rem;
+            }
+            
+            .seal {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto 20px;
+                transform: rotate(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="seal">唐诗</div>
+        
+        <header>
+            <h1>唐诗欣赏</h1>
+            <p class="subtitle">感受千年文化瑰宝，品味古典诗词韵味</p>
+        </header>
+        
+        <div class="content">
+            <section class="poem-section">
+                <h2 class="poem-title">静夜思</h2>
+                <p class="author">【唐】李白</p>
+                
+                <div class="poem-text">
+                    <div class="verse" onclick="showAnnotation(1)">床前明月光，</div>
+                    <div class="verse" onclick="showAnnotation(2)">疑是地上霜。</div>
+                    <div class="verse" onclick="showAnnotation(3)">举头望明月，</div>
+                    <div class="verse" onclick="showAnnotation(4)">低头思故乡。</div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <section class="about-poet">
+                    <h2>关于诗人·李白</h2>
+                    <p>李白（701年－762年），字太白，号青莲居士，又号"谪仙人"，是唐代伟大的浪漫主义诗人，被后人誉为"诗仙"。其诗风雄奇豪放，想象丰富，语言流转自然，音律和谐多变，达到盛唐诗歌艺术的巅峰。</p>
+                    <p>《静夜思》是李白最著名的诗篇之一，创作于唐玄宗开元十四年（726年）九月十五日的扬州旅舍，时年李白26岁。在一个月明星稀的夜晚，诗人抬头望见天空一轮皓月，思乡之情油然而生，写下了这首传诵千古、中外皆知的名诗。</p>
+                </section>
+            </section>
+            
+            <section class="annotation-section">
+                <h2 class="annotation-title">诗歌赏析</h2>
+                
+                <div class="annotation-content">
+                    <div class="annotation-item" id="annotation-1">
+                        <h3>床前明月光</h3>
+                        <p>皎洁的月光洒在床前，在地面上形成一片银白。"床"在这里指井栏，古代井栏叫银床，说明诗人站在庭院中。月光如水，澄澈透明，营造出宁静而清冷的氛围。</p>
+                    </div>
+                    
+                    <div class="annotation-item" id="annotation-2">
+                        <h3>疑是地上霜</h3>
+                        <p>诗人恍惚中将照射在地面的月光误以为是浓厚的秋霜。一个"疑"字，生动地表现了诗人睡梦初醒，恍惚中将月光误作白霜的情景。"霜"字不仅形容了月光的皎洁，更表达了季节的寒冷，衬托出诗人漂泊他乡的孤寂凄凉。</p>
+                    </div>
+                    
+                    <div class="annotation-item" id="annotation-3">
+                        <h3>举头望明月</h3>
+                        <p>诗人抬起头来，仰望夜空中那一轮明月。这一动作由"低头"到"举头"的转换，体现了诗人情感的起伏。"明月"在中国传统文化中是思乡的象征，代表着团圆和思念。</p>
+                    </div>
+                    
+                    <div class="annotation-item" id="annotation-4">
+                        <h3>低头思故乡</h3>
+                        <p>低下头来，不禁想起远方的故乡。前两句写景，后两句抒情，由望月引出思乡之情，自然流畅，毫无矫饰。全诗朴素清新，明白如话，却意蕴深远，耐人寻味。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>© 2023 唐诗欣赏 | 传承中华文化，品味古典诗词 | 《静夜思》· 李白</p>
+            <p style="margin-top: 5px; font-size: 0.8rem; opacity: 0.8;">点击诗句查看详细解析</p>
+        </footer>
+    </div>
 
+    <script>
+        // 点击诗句时高亮对应的注解
+        function showAnnotation(verseNum) {
+            // 移除之前的高亮
+            const allAnnotations = document.querySelectorAll('.annotation-item');
+            allAnnotations.forEach(item => {
+                item.style.backgroundColor = 'white';
+                item.style.borderLeft = 'none';
+            });
+            
+            // 高亮当前选中的注解
+            const currentAnnotation = document.getElementById(`annotation-${verseNum}`);
+            if (currentAnnotation) {
+                currentAnnotation.style.backgroundColor = '#fff9e6';
+                currentAnnotation.style.borderLeft = '4px solid #8b1a1a';
+                currentAnnotation.style.paddingLeft = '11px'; // 补偿边框宽度
+                
+                // 滚动到注解区域
+                currentAnnotation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            // 高亮对应的诗句
+            const allVerses = document.querySelectorAll('.verse');
+            allVerses.forEach(verse => {
+                verse.style.backgroundColor = '';
+            });
+            
+            const currentVerse = document.querySelectorAll('.verse')[verseNum - 1];
+            currentVerse.style.backgroundColor = 'rgba(139, 26, 26, 0.1)';
+        }
+        
+        // 页面加载时显示第一个注解
+        document.addEventListener('DOMContentLoaded', function() {
+            showAnnotation(1);
+        });
+    </script>
+</body>
+</html>
